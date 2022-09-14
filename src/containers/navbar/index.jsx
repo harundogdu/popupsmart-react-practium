@@ -6,10 +6,6 @@ function Navbar() {
   const [userName, setUserName] = useState('');
   const [theme, setTheme] = useState('light');
 
-  const setUserNameToLocalStorage = () => {
-    localStorage.setItem('username', JSON.stringify(userName));
-  };
-
   const getUserNameFromLocalStorage = () => {
     const localUserName = JSON.parse(localStorage.getItem('username'));
 
@@ -17,8 +13,6 @@ function Navbar() {
       setUserName(localUserName);
       return;
     }
-
-    setUserNameToLocalStorage();
   };
 
   const handleThemeSwitchClick = () => {
