@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import { useEffect } from 'react';
+import { ToggleButton } from './components';
 
 function Navbar() {
   const [userName, setUserName] = useState('');
+  const [theme, setTheme] = useState('light');
 
   const setUserNameToLocalStorage = () => {
     localStorage.setItem('username', JSON.stringify(userName));
@@ -19,9 +21,20 @@ function Navbar() {
     setUserNameToLocalStorage();
   };
 
+  const handleThemeSwitchClick = () => {
+    setTheme(theme === 'light' ? 'dark' : 'light');
+  };
+
   useEffect(() => {
     getUserNameFromLocalStorage();
   }, []);
+
+  /* theme switcher */
+  useEffect(() => {
+    const body = document.querySelector('body');
+    body.classList.remove('light', 'dark');
+    body.classList.add(theme);
+  }, [theme]);
 
   return (
     <nav className='navbar'>
@@ -32,7 +45,11 @@ function Navbar() {
             <span>{userName}</span>
           </li>
           <li>
-            <button>Koyu Mod</button>
+            <ToggleButton
+              name='theme'
+              onChange={handleThemeSwitchClick}
+              value={theme}
+            />
           </li>
         </ul>
       </div>

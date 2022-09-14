@@ -1,4 +1,4 @@
-import { Navbar, TodoHeader, TodoList } from 'components';
+import { Navbar, TodoHeader, TodoList } from 'containers';
 
 function App() {
   return (
