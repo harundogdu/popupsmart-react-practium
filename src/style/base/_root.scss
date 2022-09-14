@@ -25,19 +25,6 @@ a {
   text-decoration: none;
 }
 
-.app {
-  height: 100%;
-  width: 100%;
-  @include flex($direction: column, $justify: flex-start, $align: flex-start);
-  row-gap: 3rem;
-
-  &__container {
-    max-width: 1200px;
-    width: 100%;
-    margin: 0 auto;
-  }
-}
-
 body.dark{
   background: $dark;
   color: $light;
