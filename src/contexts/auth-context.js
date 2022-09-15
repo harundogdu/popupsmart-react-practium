@@ -7,17 +7,19 @@ const initialState = {
 const AuthContext = createContext(initialState);
 
 const AuthProvider = ({ children }) => {
-  const [username, setUsername] = useState(initialState.username);
+  const [username, setUserName] = useState(initialState.username);
+  const [auth, setAuth] = useState(initialState.username !== null);
 
   useEffect(() => {
-    if (username) {
+    if (auth) {
       localStorage.setItem('username', JSON.stringify(username));
     }
-  }, [username]);
+  }, [auth]);
 
   const value = {
     username,
-    setUsername
+    setUserName,
+    setAuth
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

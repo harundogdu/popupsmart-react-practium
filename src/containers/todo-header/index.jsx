@@ -11,7 +11,7 @@ function TodoHeader() {
   const handleAddTodoButtonClick = e => {
     e.preventDefault();
 
-    if (activeTodo.content.length <= 3) {
+    if (activeTodo.content.length < 3) {
       alert('Please make sure todo is at least 3 characters long');
       return;
     }

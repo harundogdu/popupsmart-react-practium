@@ -13,13 +13,14 @@ function TodoList() {
     setModal(true);
   };
 
-  const handleUpdateButtonClick = () => {
+  const handleUpdateButtonClick = e => {
+    e.preventDefault();
     if (todos.find(item => item.content === activeTodo.content)) {
       alert('Todo already exists');
       return;
     }
 
-    if (activeTodo.content.length <= 3) {
+    if (activeTodo.content.length < 3) {
       alert('Please make sure todo is at least 3 characters long');
       return;
     }
@@ -32,7 +33,7 @@ function TodoList() {
     const todo = todos.find(todo => todo.id === id);
     todo.isCompleted = !todo.isCompleted;
     editTodo(todo.id, todo);
-  }
+  };
 
   return (
     <div className='todo-list-container'>
@@ -77,7 +78,7 @@ function TodoList() {
           onClick={handleUpdateButtonClick}
           buttonText='Update'
         >
-          <form className='modal__form'>
+          <form className='modal__form' onSubmit={handleUpdateButtonClick}>
             <div className='modal__form-group'>
               <label htmlFor='todo' className='modal__form-group-label'>
                 Todo

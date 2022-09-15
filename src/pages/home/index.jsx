@@ -5,12 +5,14 @@ import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
   const navigate = useNavigate();
-  const { username, setUsername } = useAuth();
+  const { username, setUserName, setAuth } = useAuth();
   const [modal, setModal] = React.useState(true);
 
-  const handleSaveClick = () => {
+  const handleSaveClick = e => {
+    e.preventDefault();
     if (username) {
       setModal(false);
+      setAuth(true);
       navigate('/todos');
       return;
     }
@@ -26,7 +28,7 @@ const Home = () => {
           setVisible={setModal}
           buttonText='Save'
         >
-          <form className='modal__form'>
+          <form className='modal__form' onSubmit={handleSaveClick}>
             <div className='modal__form-group'>
               <label htmlFor='username' className='modal__form-group-label'>
                 Username
@@ -37,7 +39,7 @@ const Home = () => {
                 id='username'
                 className='modal__form-group-input'
                 value={username}
-                onChange={e => setUsername(e.target.value)}
+                onChange={e => setUserName(e.target.value)}
               />
             </div>
           </form>
