@@ -26,7 +26,7 @@ const Home = () => {
           title='Enter ur username'
           onClick={handleSaveClick}
           setVisible={setModal}
-          buttonText='Save'
+          buttonText='Login'
         >
           <form className='modal__form' onSubmit={handleSaveClick}>
             <div className='modal__form-group'>
