@@ -1,23 +1,94 @@
-import { useEffect, useState } from 'react';
-import { TODO_SERVICES } from 'services/todoService';
+import { CommonModal, LoadingSpinner } from 'components';
+import { useTodo } from 'contexts/todo-context';
+import { useState } from 'react';
 
 function TodoList() {
-  const [todos, setTodos] = useState([]);
+  const { todos, loading, deleteTodo, editTodo } = useTodo();
+  const [activeTodo, setActiveTodo] = useState(null);
+  const [modal, setModal] = useState(false);
 
-  const fetchTodos = async () => {
-    const response = await TODO_SERVICES.getTodos();
-    setTodos(response.data);
+  const handleEditButtonClick = id => {
+    const todo = todos.find(todo => todo.id === id);
+    setActiveTodo(todo);
+    setModal(true);
   };
 
-  useEffect(() => {
-    fetchTodos();
-  }, []);
+  const handleUpdateButtonClick = () => {
+    if (todos.find(item => item.content === activeTodo.content)) {
+      alert('Todo already exists');
+      return;
+    }
+
+    if (activeTodo.content.length <= 3) {
+      alert('Please make sure todo is at least 3 characters long');
+      return;
+    }
+
+    editTodo(activeTodo.id, activeTodo);
+    setModal(false);
+  };
 
   return (
-    <div>
-      {todos.map(todo => (
-        <div key={todo.id}>{todo.content}</div>
-      ))}
+    <div className='todo-list-container'>
+      {loading ? (
+        <LoadingSpinner text='Loading...' />
+      ) : (
+        <div className='todo-list'>
+          {todos.map((todo, index) => (
+            <div className='todo-item' key={index}>
+              <div className='todo-item__content'>
+                <p
+                  className={`${
+                    todo.isCompleted ? 'text-completed' : 'text-uncompleted'
+                  } todo-item__content__text`}
+                >
+                  {todo.content}
+                </p>
+                <div className='todo-item__content__actions'>
+                  <button
+                    className='btnEdit'
+                    onClick={() => handleEditButtonClick(todo.id)}
+                  >
+                    Edit
+                  </button>
+                  <button
+                    className='btnDelete'
+                    onClick={() => deleteTodo(todo.id)}
+                  >
+                    Delete
+                  </button>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+      {modal && (
+        <CommonModal
+          title='Edit Todo'
+          setVisible={setModal}
+          onClick={handleUpdateButtonClick}
+          buttonText='Update'
+        >
+          <form className='modal__form'>
+            <div className='modal__form-group'>
+              <label htmlFor='todo' className='modal__form-group-label'>
+                Todo
+              </label>
+              <input
+                type='text'
+                name='todo'
+                id='todo'
+                className='modal__form-group-input'
+                value={activeTodo.content}
+                onChange={e =>
+                  setActiveTodo({ ...activeTodo, content: e.target.value })
+                }
+              />
+            </div>
+          </form>
+        </CommonModal>
+      )}
     </div>
   );
 }
