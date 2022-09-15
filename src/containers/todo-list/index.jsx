@@ -28,6 +28,12 @@ function TodoList() {
     setModal(false);
   };
 
+  const handleTodoCompleteClick = id => {
+    const todo = todos.find(todo => todo.id === id);
+    todo.isCompleted = !todo.isCompleted;
+    editTodo(todo.id, todo);
+  }
+
   return (
     <div className='todo-list-container'>
       {loading ? (
@@ -41,6 +47,7 @@ function TodoList() {
                   className={`${
                     todo.isCompleted ? 'text-completed' : 'text-uncompleted'
                   } todo-item__content__text`}
+                  onClick={() => handleTodoCompleteClick(todo.id)}
                 >
                   {todo.content}
                 </p>
