@@ -1,16 +1,29 @@
 import { CommonModal } from 'components';
+import { useAuth } from 'contexts/auth-context';
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
+  const navigate = useNavigate();
+  const { username, setUsername } = useAuth();
   const [modal, setModal] = React.useState(true);
-  const [username, setUsername] = React.useState('');
+
+  const handleSaveClick = () => {
+    if (username) {
+      setModal(false);
+      navigate('/todos');
+      return;
+    }
+    alert('Please enter a username');
+  };
+
   return (
     <section className='home'>
       {modal && (
         <CommonModal
           setModal={setModal}
           title='Enter ur username'
-          control={username}
+          onClick={handleSaveClick}
         >
           <form action='' className='modal__form'>
             <div className='modal__form-group'>

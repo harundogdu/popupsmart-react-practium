@@ -1,17 +1,6 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 
-const CommonModal = ({ title, children, setModal, control }) => {
-  const navigate = useNavigate();
-  const handleSaveClick = () => {
-    if (control) {
-      setModal(false);
-      localStorage.setItem('username', JSON.stringify(control));
-      navigate('/todos');
-    } else {
-      alert('Please fill the form');
-    }
-  };
+const CommonModal = ({ title, children, onClick }) => {
   return (
     <div className='modal'>
       <div className='modal__container'>
@@ -23,10 +12,7 @@ const CommonModal = ({ title, children, setModal, control }) => {
         </div>
         <div className='modal__container-body'>{children}</div>
         <div className='modal__container-footer'>
-          <button
-            className='modal__container-footer-button'
-            onClick={handleSaveClick}
-          >
+          <button className='modal__container-footer-button' onClick={onClick}>
             Save
           </button>
         </div>
