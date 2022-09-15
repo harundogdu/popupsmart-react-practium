@@ -30,6 +30,10 @@
       }
       &-close {
         cursor: pointer;
+        background-color: transparent;
+        color: #000;
+        display: inline-block;
+        width: fit-content;
       }
     }
     &-body {
