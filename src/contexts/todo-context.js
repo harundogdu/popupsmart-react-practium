@@ -84,4 +84,5 @@ const TodoProvider = ({ children }) => {
 
 const useTodo = () => useContext(TodoContext);
 
-export { TodoProvider, useTodo };
+export default TodoProvider;
+export { useTodo };

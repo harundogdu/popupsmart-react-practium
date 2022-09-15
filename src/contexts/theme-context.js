@@ -31,4 +31,5 @@ const ThemeProvider = ({ children }) => {
 
 const useTheme = () => useContext(ThemeContext);
 
-export { ThemeProvider, useTheme };
+export default ThemeProvider;
+export { useTheme };

@@ -1,25 +1,28 @@
 import { createContext, useEffect, useContext, useState } from 'react';
 
 const initialState = {
-  username: JSON.parse(localStorage.getItem('username')) || null
+  username: JSON.parse(localStorage.getItem('username'))
 };
 
 const AuthContext = createContext(initialState);
 
 const AuthProvider = ({ children }) => {
-  const [username, setUserName] = useState(initialState.username);
-  const [auth, setAuth] = useState(initialState.username !== null);
+  const [username, setUserName] = useState(initialState.username || '');
+  const [auth, setAuth] = useState(initialState.username ? true : false);
 
   useEffect(() => {
     if (auth) {
       localStorage.setItem('username', JSON.stringify(username));
+    } else {
+      localStorage.removeItem('username');
     }
-  }, [auth]);
+  }, [auth, username]);
 
   const value = {
     username,
     setUserName,
-    setAuth
+    setAuth,
+    auth
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
@@ -27,4 +30,5 @@ const AuthProvider = ({ children }) => {
 
 const useAuth = () => useContext(AuthContext);
 
-export { AuthProvider, useAuth };
+export default AuthProvider;
+export { useAuth };
