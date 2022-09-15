@@ -21,11 +21,12 @@ const Home = () => {
     <section className='home'>
       {modal && (
         <CommonModal
-          setModal={setModal}
           title='Enter ur username'
           onClick={handleSaveClick}
+          setVisible={setModal}
+          buttonText='Save'
         >
-          <form action='' className='modal__form'>
+          <form className='modal__form'>
             <div className='modal__form-group'>
               <label htmlFor='username' className='modal__form-group-label'>
                 Username
