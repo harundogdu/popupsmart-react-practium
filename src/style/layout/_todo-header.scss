@@ -1,20 +1,19 @@
 .todo-header {
   width: 100%;
-  @include flex;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 
   &__card {
-    @include flex($direction: column);
     width: 100%;
     background-color: #fff;
-    border-radius: 0.2rem;
-    padding: 1.5rem;
+    border-radius: 10px;
+    padding: 2rem;
     box-shadow: 0 0.2rem 0.5rem rgba(0, 0, 0, 0.1);
 
     &-header h1 {
       font-size: 1.2rem;
       font-weight: 600;
       color: #333;
+      padding: 0 1rem;
       margin-bottom: 1rem;
     }
 
@@ -28,51 +27,26 @@
         .form-group {
           @include flex($direction: column);
           width: 100%;
+          
 
           input {
             width: 100%;
-            padding: 0.5rem;
+            padding: .6rem;
             border: 1px solid #ccc;
             outline: none;
-            font-size: 0.8rem;
+            font-size: 1.2rem;
             font-weight: 400;
             color: #333;
-            height: 35px;
-            border-top-left-radius: .2rem;
-            border-bottom-left-radius: .2rem;
+            border-top-left-radius: 0.2rem;
+            border-bottom-left-radius: 0.2rem;
+            height: 45px;
           }
         }
 
         .button-area {
           @include flex;
           column-gap: 1rem;
-
-          button {
-            padding: 0.5rem 1rem;
-            border: none;
-            outline: none;
-            font-size: 0.8rem;
-            font-weight: 600;
-            color: #fff;
-            cursor: pointer;
-            transition: all 0.2s ease-in-out;
-            height: 35px;
-            border-top-right-radius: .2rem;
-            border-bottom-right-radius: .2rem;
-
-            &.btnAdd {
-              background-color: #2ecc71;
-              &:hover {
-                background-color: #27ae60;
-              }
-            }
-            &.btnUpdate {
-              background-color: #3498db;
-              &:hover {
-                background-color: #2980b9;
-              }
-            }
-          }
+          height: 45px;
         }
       }
     }

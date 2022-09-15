@@ -2,7 +2,7 @@
   height: 100%;
   width: 100%;
   @include flex($direction: column, $justify: flex-start, $align: flex-start);
-  row-gap: 3rem;
+  row-gap: 1rem;
 
   &__container {
     max-width: 1200px;
