@@ -4,17 +4,14 @@
   left: 50%;
   transform: translate(-50%, -50%);
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  gap: 1rem;
+  @include flex($direction: column);
+  row-gap: 1rem;
 
   &__spinner {
-    width: 100px;
-    height: 100px;
-    border: 10px solid #000;
-    border-top: 10px solid #3498db;
+    width: 70px;
+    height: 70px;
+    border: 10px solid $black;
+    border-top: 10px solid $color-main-blue;
     border-radius: 50%;
     animation: spin 1s linear infinite;
   }
@@ -28,8 +25,8 @@
   }
 
   &__text {
-    font-size: 1.5rem;
-    color: #000;
+    font-size: 1rem;
+    color: $dark;
     margin-left: 1rem;
   }
 }

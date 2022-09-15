@@ -4,24 +4,29 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: #fff;
+  background-color: $white;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   padding: 20px;
-  width: 100%;
-  margin-bottom: 2rem;
+  width: 70%;
   position: relative;
+  margin: 2rem auto;
 
   .todo-item {
     display: flex;
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    padding: 0.5rem;
+    padding: 0.8rem;
     border-bottom: 1px solid #eee;
     &:last-child {
       border-bottom: none;
     }
+
+    &:hover {
+      background-color: #eee;
+    }
+
     &__content {
       width: 100%;
       display: flex;
@@ -40,8 +45,10 @@
         font-size: 1.2rem;
         color: #333;
         text-decoration: none;
-        width: 100%;
         padding: 0 1rem;
+        cursor: pointer;
+        display: inline-block;
+        transition: all 0.3s ease;
       }
 
       &__actions {
@@ -53,30 +60,30 @@
         column-gap: 5px;
 
         .btnEdit {
-          background-color: orange;
-          border: 1px solid orange;
-          color: #fff;
+          background-color: $orange;
+          border: 1px solid $orange;
+          color: $white;
           padding: 0.5rem 1rem;
           border-radius: 5px;
           cursor: pointer;
           transition: all 0.3s ease-in-out;
           &:hover {
-            background-color: #fff;
-            color: orange;  
+            background-color: $white;
+            color: $orange;
           }
         }
 
         .btnDelete {
-          background-color: #f00;
-          border: 1px solid #f00;
-          color: #fff;
+          background-color: $red;
+          border: 1px solid $red;
+          color: $white;
           padding: 0.5rem 1rem;
           border-radius: 5px;
           cursor: pointer;
           transition: all 0.3s ease-in-out;
           &:hover {
-            background-color: #fff;
-            color: #f00;  
+            background-color: $white;
+            color: $red;
           }
         }
       }

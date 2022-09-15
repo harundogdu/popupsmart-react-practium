@@ -1,0 +1,48 @@
+body.dark {
+  background: $color-dark-background;
+  color: $light;
+
+  a {
+    color: $light;
+  }
+
+  .navbar {
+    background: $color-dark-background;
+    color: $light;
+  }
+
+  .todo-header__card {
+    background: $dark;
+    &-header h1 {
+      color: $light;
+    }
+  }
+
+  .todo-list {
+    background: $dark;
+    .todo-item {
+      &:hover {
+        background-color: #333;
+      }
+      &__content {
+        p {
+          color: $light;
+        }
+      }
+    }
+  }
+
+  .loading {
+    &__spinner {
+      border: 10px solid $light;
+      border-top: 10px solid $color-main-blue;
+    }
+    &__text {
+      color: $light;
+    }
+  }
+
+  .modal__container{
+    background-color: $dark;;
+  }
+}

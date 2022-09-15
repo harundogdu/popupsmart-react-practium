@@ -1,16 +1,16 @@
 button {
+  width: 100px;
+  height: 100%;
   padding: 0.5rem 1rem;
-  border: none;
-  outline: none;
   font-size: 0.8rem;
   font-weight: 600;
-  color: #fff;
+  color: $white;
+  border: none;
+  outline: none;
   cursor: pointer;
-  transition: all 0.2s ease-in-out;
-  height: 100%;
   border-top-right-radius: 0.2rem;
   border-bottom-right-radius: 0.2rem;
-  width: 100px;
+  transition: $transition;
 
   &:disabled {
     cursor: not-allowed;
@@ -18,15 +18,9 @@ button {
   }
 
   &.btnAdd {
-    background-color: #28a745;
+    background-color: $green;
     &:hover {
-      background-color: #218838;
-    }
-  }
-  &.btnUpdate {
-    background-color: #3498db;
-    &:hover {
-      background-color: #2980b9;
+      background-color: darken($green, 10%);
     }
   }
 }
