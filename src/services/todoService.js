@@ -15,6 +15,4 @@ export const TODO_SERVICES = {
   createTodo: data => SERVICE.post('/', data),
   updateTodo: (id, data) => SERVICE.put(`/${id}`, data),
   deleteTodo: id => SERVICE.delete(`/${id}`),
-  completeTodo: id => SERVICE.put(`/${id}/complete`),
-  uncompleteTodo: id => SERVICE.put(`/${id}/uncomplete`)
 };

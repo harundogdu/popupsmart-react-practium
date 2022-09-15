@@ -6,7 +6,7 @@ const Todos = () => {
     <section className='todos'>
       <Navbar />
       <div className='todos__container'>
-        <TodoHeader type='add' />
+        <TodoHeader />
         <TodoList />
       </div>
     </section>
