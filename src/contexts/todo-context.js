@@ -14,7 +14,6 @@ const initialState = {
 const TodoContext = createContext(initialState);
 
 const TodoProvider = ({ children }) => {
-  const [todo, setTodo] = useState({ content: '' });
   const [todos, setTodos] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -38,7 +37,30 @@ const TodoProvider = ({ children }) => {
     } catch (error) {
       console.log(error);
     } finally {
-      setTodo({ content: '' });
+      setLoading(false);
+      getTodos();
+    }
+  };
+
+  const editTodo = async (id, data) => {
+    setLoading(true);
+    try {
+      await TODO_SERVICES.updateTodo(id, data);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+      getTodos();
+    }
+  };
+
+  const deleteTodo = async id => {
+    setLoading(true);
+    try {
+      await TODO_SERVICES.deleteTodo(id);
+    } catch (error) {
+      console.log(error);
+    } finally {
       setLoading(false);
       getTodos();
     }
@@ -53,8 +75,8 @@ const TodoProvider = ({ children }) => {
     addTodo,
     loading,
     getTodos,
-    todo,
-    setTodo
+    deleteTodo,
+    editTodo
   };
 
   return <TodoContext.Provider value={value}>{children}</TodoContext.Provider>;
