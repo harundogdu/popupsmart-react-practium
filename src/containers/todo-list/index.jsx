@@ -40,36 +40,38 @@ function TodoList() {
       {loading ? (
         <LoadingSpinner text='Loading...' />
       ) : (
-        <div className='todo-list'>
-          {todos.map((todo, index) => (
-            <div className='todo-item' key={index}>
-              <div className='todo-item__content'>
-                <p
-                  className={`${
-                    todo.isCompleted ? 'text-completed' : 'text-uncompleted'
-                  } todo-item__content__text`}
-                  onClick={() => handleTodoCompleteClick(todo.id)}
-                >
-                  {todo.content}
-                </p>
-                <div className='todo-item__content__actions'>
-                  <button
-                    className='btnEdit'
-                    onClick={() => handleEditButtonClick(todo.id)}
+        todos.length > 0 && (
+          <div className='todo-list'>
+            {todos.map((todo, index) => (
+              <div className='todo-item' key={index}>
+                <div className='todo-item__content'>
+                  <p
+                    className={`${
+                      todo.isCompleted ? 'text-completed' : 'text-uncompleted'
+                    } todo-item__content__text`}
+                    onClick={() => handleTodoCompleteClick(todo.id)}
                   >
-                    Edit
-                  </button>
-                  <button
-                    className='btnDelete'
-                    onClick={() => deleteTodo(todo.id)}
-                  >
-                    Delete
-                  </button>
+                    {todo.content}
+                  </p>
+                  <div className='todo-item__content__actions'>
+                    <button
+                      className='btnEdit'
+                      onClick={() => handleEditButtonClick(todo.id)}
+                    >
+                      Edit
+                    </button>
+                    <button
+                      className='btnDelete'
+                      onClick={() => deleteTodo(todo.id)}
+                    >
+                      Delete
+                    </button>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        )
       )}
       {modal && (
         <CommonModal
